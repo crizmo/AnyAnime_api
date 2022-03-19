@@ -21,3 +21,39 @@ If you want to use the package instead of the api here's the link:
 
 - [AnyAnime](https://www.npmjs.com/package/anyanime/v/1.2.14)
 - [Github](https://github.com/crizmo/AnyAnime)
+
+# Discord implementation
+
+```javascript
+const Discord = require("discord.js");
+const client = new Discord.Client();
+
+let Anyanime = [];
+let ani = await fetch(`https://anyanime-api.herokuapp.com/anime`);
+let data = await ani.json();
+
+Anyanime.push({
+  message: data.message.toLocaleString(),
+  status: data.status.toLocaleString(),
+
+  // image
+
+  name: data.stuff[0].name.toLocaleString(),
+  daimg: data.stuff[0].image.toLocaleString(),
+});
+
+const embed = new MessageEmbed()
+  .setColor("RANDOM")
+  .setTitle(`${Anyanime[0].name}`)
+  .setDescription(`${Anyanime[0].message} \n ${Anyanime[0].status}`);
+  .setImage(Anyanime[0].daimg)
+  .setFooter(`Hope you like it!`);
+message.channel.send({ embeds: [embed] });
+
+```
+
+# Endpoints
+
+- Base ( GET ) - https://anyanime-api.herokuapp.com/ - The base endpoint
+- Data & img ( GET ) - https://anyanime-api.herokuapp.com/anime - Shows json data and image.
+- Just img ( GET ) - https://anyanime-api.herokuapp.com/anime/img - Just shows a random image from the database.
