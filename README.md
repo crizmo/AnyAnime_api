@@ -25,8 +25,8 @@ If you want to use the package instead of the api here's the link:
 # Discord implementation
 
 ```javascript
-const Discord = require("discord.js");
-const client = new Discord.Client();
+const { MessageEmbed } = require('discord.js');
+const fetch = require("node-fetch");
 
 let Anyanime = [];
 let ani = await fetch(`https://anyanime-api.herokuapp.com/anime`);
