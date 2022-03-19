@@ -18,10 +18,10 @@ app.get('/anime', (req, res) => {
     res.status(200).send({
         message: 'Hi User',
         status: 'success',
-        data: {
+        stuff: [{
             name: 'Anime img source',
             image: anime[mathRandom(anime.length)]
-        }
+        }]
     });
 });
 
