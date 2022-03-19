@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("AnyAnime Api");
+    res.send(`Hi ! Welcome to AnyAnime Api , Please using the following endpoints :- <br>To get json data - <a href="https://anyanime-api.herokuapp.com/anime">/anime</a> <br>To get random anime img / pfp - <a href="https://anyanime-api.herokuapp.com/anime/img">/anime/img</a>`);
 })
 
 app.listen(PORT, () => {
