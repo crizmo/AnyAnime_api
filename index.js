@@ -8,6 +8,10 @@ app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 });
 
+app.get("/", (req, res) => {
+    res.send("AnyAnime Api");
+})
+
 app.get('/anime', (req, res) => {
     const anime = require("./database/anime.json");
     const mathRandom = (number) => ~~(Math.random() * number);
