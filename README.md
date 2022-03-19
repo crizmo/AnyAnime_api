@@ -9,7 +9,7 @@
 AnyAnime api is a addon on the original anyanime npm package which works similar to the package
 []: # Language: javascript
 
-The api & package is made by `Criz#1270`
+The api & package is made by `Criz#1270` !
 
 Get a random anime pfp / image per request.
 
