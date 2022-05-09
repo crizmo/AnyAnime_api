@@ -29,7 +29,7 @@ const { MessageEmbed } = require('discord.js');
 const fetch = require("node-fetch");
 
 let Anyanime = [];
-let ani = await fetch(`https://anyanime-api.herokuapp.com/anime`);
+let ani = await fetch(`https://any-anime.p.rapidapi.com/anime/?rapidapi-key={YOUR_API_KEY}`);
 let data = await ani.json();
 
 Anyanime.push({
@@ -52,7 +52,12 @@ message.channel.send({ embeds: [embed] });
 
 ```
 
-# Endpoints
+# Endpoints using rapid
+
+- Data & img ( GET ) - https://any-anime.p.rapidapi.com/anime/?rapidapi-key={YOUR_API_KEY} - Shows json data and image.
+- Just img ( GET ) - https://anyanime-api.herokuapp.com/anime/img/?rapidapi-key={YOUR_API_KEY} - Just shows a random image from the database.
+
+# Endpoints using heroku
 
 - Base ( GET ) - https://anyanime-api.herokuapp.com/ - The base endpoint
 - Data & img ( GET ) - https://anyanime-api.herokuapp.com/anime - Shows json data and image.
