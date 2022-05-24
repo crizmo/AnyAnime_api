@@ -57,7 +57,7 @@ message.channel.send({ embeds: [embed] });
 - Data & img ( GET ) - https://any-anime.p.rapidapi.com/anime/?rapidapi-key={YOUR_API_KEY} - Shows json data and image.
 - Just img ( GET ) - https://anyanime-api.herokuapp.com/anime/img/?rapidapi-key={YOUR_API_KEY} - Just shows a random image from the database.
 
-# Endpoints using heroku
+# Base endpoints
 
 - Base ( GET ) - https://anyanime-api.herokuapp.com/ - The base endpoint
 - Data & img ( GET ) - https://anyanime-api.herokuapp.com/anime - Shows json data and image.
