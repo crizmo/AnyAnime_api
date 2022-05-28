@@ -13,7 +13,7 @@ The api & package is made by `Criz#1270` !
 Get a random anime pfp / image per request.
 
 - Reload the site or click the button to get a new image.
-- Current db size : 400
+- Current db size : 500
 
 # Package
 
