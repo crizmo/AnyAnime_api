@@ -15,6 +15,21 @@ Get a random anime pfp / image per request.
 - Reload the site or click the button to get a new image.
 - Current db size : 600
 
+# Contributing
+If you want to contribute to the api you can do so by making a pull request or by making an issue.
+
+To add more images to the api you can do so by adding them to the `database/data/url.json` folder.
+
+- Example :- 
+```json
+[
+  "https://cdn.discordapp.com/attachments/970974282681307187/988501172887363604/favicon.png",
+  "https://media.discordapp.net/attachments/952764969638834228/969830435444097054/Criz.png",
+]
+```
+Then you can make a pull request and i'll add them to the api.
+Try to keep the url type as `png` or `gif`. ( Better if the images are hosted on discord )
+
 # Package
 
 If you want to use the package instead of the api here's the link:
