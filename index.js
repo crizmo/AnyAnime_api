@@ -18,7 +18,7 @@ app.get('/anime', (req, res) => {
 
     const Anime = require("./database/models/anime");
     Anime.find({ type: "png" }).then((result) => {
-        console.log(result[0].urls.length);
+        // console.log(result[0].urls.length);
         res.status(200).send({
             message: 'Hi User',
             status: 'success',
@@ -40,7 +40,7 @@ app.get('/anime/img', (req, res) => {
     const AnyAnime = () => {    
         return {
             anime: () => Anime.find({ type: "png" }).then((result) => {
-                console.log(result[0].urls[mathRandom(result[0].urls.length)])
+                // console.log(result[0].urls[mathRandom(result[0].urls.length)])
                 return result[0].urls[mathRandom(result[0].urls.length)];
             }).catch((err) => {
                 console.log(err);
