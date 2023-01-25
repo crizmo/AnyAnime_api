@@ -57,6 +57,4 @@ app.get('/anime/img', (req, res) => {
     ).catch((err) => {
         console.log(err);
     });
-})
-
-module.exports = app;
+});
