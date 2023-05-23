@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^1.37.0",
     "dotenv": "^16.0.3",
     "express": "^4.17.3",
     "mongoose": "^6.8.1"
