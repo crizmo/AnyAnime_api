@@ -88,3 +88,5 @@ app.get('/anime/gif', (req, res) => {
         console.log(err);
     });
 });
+
+module.exports = app;
