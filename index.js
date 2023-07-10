@@ -7,9 +7,9 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send(`Hi ! Welcome to AnyAnime Api , Please using the following endpoints :- 
-    <br>To get json data - <a href="https://anyanime-api.kurizu.repl.co/anime">/anime</a> 
-    <br>To get random anime img / pfp - <a href="https://anyanime-api.kurizu.repl.co/anime/img">/anime/img</a>
-    <br>To get random anime gif - <a href="https://anyanime-api.kurizu.repl.co/anime/gif">/anime/gif</a>
+    <br>To get json data - <a href="https://anyanime-api.vercel.app/anime">/anime</a> 
+    <br>To get random anime img / pfp - <a href="https://anyanime-api.vercel.app/anime/img">/anime/img</a>
+    <br>To get random anime gif - <a href="https://anyanime-api.vercel.app/anime/gif">/anime/gif</a>
 `);
 })
 
