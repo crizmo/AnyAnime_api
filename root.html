@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        h1 {
+            color: #007BFF;
+        }
+        p {
+            font-size: 18px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        span {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Hi! Welcome to AnyAnime API</h1>
+    <p>AnyAnime is a free API that allows you to get random anime images.</p>
+    <br />
+    <h2>How to use it?</h2>
+    <p>It's very simple!</p>
+    <p>Just use the following endpoint:</p>
+    <ul>
+        <li><a href="/v1/anime/:type/:number">/v1/anime/:type/:number</a> (number is optional)</li>
+        <li><a href="/v1/anime/:type/:number">/v1/anime/:type/:number</a> (number is optional)</li>
+    </ul>
+    <p>Where <span>:type</span> is the type of image you want to get. It can be <span>gif</span> or <span>png</span>.</p>
+    <p>And <span>:number</span> is the number of images you want to get. It can be any number between 1 and 10.</p>
+    <br />
+    <h2>Examples</h2>
+    <ul>
+        <li><a href="/v1/anime/gif/2">/v1/anime/gif/2</a></li>
+        <li><a href="/v1/anime/png/3">/v1/anime/png/3</a></li>
+    </ul>
+    <p><span>Note:</span> If the number is not provided, it will return 1 image by default. <br />Max number is 10.</p>
+    <p>Thank you!</p>
+</body>
+</html>

@@ -1,3 +1,5 @@
+# Note changes are not yet pushed
+
 <p align="center">
   <a href="https://www.npmjs.com/package/anyanime">
     <img src="https://media.discordapp.net/attachments/953273278770860082/954403125584871454/anyanimeapi.png?width=1279&height=196" alt="Any Anime Api">
@@ -44,7 +46,7 @@ const { MessageEmbed } = require('discord.js');
 const fetch = require("node-fetch");
 
 let Anyanime = [];
-let ani = await fetch(`https://any-anime.p.rapidapi.com/anime/?rapidapi-key={YOUR_API_KEY}`);
+let ani = await fetch(`https://any-anime.p.rapidapi.com/v1/anime/png/1/?rapidapi-key={YOUR_API_KEY}`);
 let data = await ani.json();
 
 Anyanime.push({

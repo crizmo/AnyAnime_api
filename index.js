@@ -1,92 +1,75 @@
 const express = require('express');
+const fs = require("fs");
+const path = require("path");
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = 3000;
 require('./database/connection')
 
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send(`Hi ! Welcome to AnyAnime Api , Please using the following endpoints :- 
-    <br>To get json data - <a href="https://anyanime-api.vercel.app/anime">/anime</a> 
-    <br>To get random anime img / pfp - <a href="https://anyanime-api.vercel.app/anime/img">/anime/img</a>
-    <br>To get random anime gif - <a href="https://anyanime-api.vercel.app/anime/gif">/anime/gif</a>
-`);
-})
+    const rootPagePath = path.join(__dirname, "root.html");
+
+    // Read the content from the HTML file
+    fs.readFile(rootPagePath, "utf8", (err, data) => {
+        if (err) {
+            console.error("Error reading the welcome page content:", err);
+            res.status(500).send("Internal Server Error");
+        } else {
+            res.send(data);
+        }
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 });
 
-app.get('/anime', (req, res) => {
-    const mathRandom = (number) => ~~(Math.random() * number);
+app.get('/v1/anime/:type/:number?', (req, res) => {
+    const { type, number } = req.params;
+    const numImages = number ? parseInt(number, 10) : 1; // Default to 1 if number is not provided
 
-    const Anime = require("./database/models/anime");
-    Anime.find({ type: "png" }).then((result) => {
-        // console.log(result[0].urls.length);
-        res.status(200).send({
-            message: 'Hi User',
-            status: 'success',
-            stuff: [{
-                name: 'Anime img source',
-                image: result[0].urls[mathRandom(result[0].urls.length)]
-            }]
+    if (type === 'gif' || type === 'png') {
+        if (numImages <= 10) {
+            const Anime = require("./database/models/anime");
+            const mathRandom = (number) => ~~(Math.random() * number);
+
+            const AnyAnime = () => {
+                return {
+                    anime: () => Anime.find({ type }).then((result) => {
+                        const selectedImages = [];
+                        for (let i = 0; i < numImages; i++) {
+                            const randomIndex = mathRandom(result[0].urls.length);
+                            selectedImages.push(result[0].urls[randomIndex]);
+                        }
+                        return selectedImages;
+                    }).catch((err) => {
+                        console.log(err);
+                    }),
+                };
+            };
+
+            const selectedImages = AnyAnime().anime();
+            selectedImages.then((result) => {
+                res.status(200).send({
+                    message: `Random Anime ${type.toUpperCase()} Images`,
+                    status: '200',
+                    images: result,
+                });
+            }).catch((err) => {
+                console.log(err);
+            });
+        } else {
+            res.status(400).send({
+                message: 'Number of images requested exceeds the limit (10).',
+                status: '400',
+            });
+        }
+    } else {
+        res.status(400).send({
+            message: 'Invalid type. Type must be "gif" or "png".',
+            status: '400',
         });
-    }).catch((err) => {
-        console.log(err);
-    });
-
-});
-
-app.get('/anime/img', (req, res) => {
-    const Anime = require("./database/models/anime");
-    const mathRandom = (number) => ~~(Math.random() * number);
-
-    const AnyAnime = () => {    
-        return {
-            anime: () => Anime.find({ type: "png" }).then((result) => {
-                // console.log(result[0].urls[mathRandom(result[0].urls.length)])
-                return result[0].urls[mathRandom(result[0].urls.length)];
-            }).catch((err) => {
-                console.log(err);
-            }),
-        };
-    };  
-
-    const daimg = AnyAnime().anime();
-    daimg.then((result) => {
-        const image = `<img src="${result}" style="height: auto; width: 10%;">`;
-        const reload = `<button onclick="location.reload()">Reload</button>`;
-        res.send(image + reload);
     }
-    ).catch((err) => {
-        console.log(err);
-    });
 });
 
-app.get('/anime/gif', (req, res) => {
-    const Anime = require("./database/models/anime");
-    const mathRandom = (number) => ~~(Math.random() * number);
-
-    const AnyAnime = () => {    
-        return {
-            anime: () => Anime.find({ type: "gif" }).then((result) => {
-                // console.log(result[0].urls[mathRandom(result[0].urls.length)])
-                return result[0].urls[mathRandom(result[0].urls.length)];
-            }).catch((err) => {
-                console.log(err);
-            }),
-        };
-    };  
-
-    const daimg = AnyAnime().anime();
-    daimg.then((result) => {
-        const image = `<img src="${result}" style="height: auto; width: 10%;">`;
-        const reload = `<button onclick="location.reload()">Reload</button>`;
-        res.send(image + reload);
-    }
-    ).catch((err) => {
-        console.log(err);
-    });
-});
-
-module.exports = app;
