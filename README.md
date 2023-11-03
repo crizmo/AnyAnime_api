@@ -15,7 +15,9 @@ The api & package is made by `kurizu.taz` on discord !
 Get a random anime pfp / image per request.
 
 - Reload the site or click the button to get a new image.
-- Current db size : 600
+- Current db size : 770 png | 185 gifs
+
+Anyanime API is a free API that allows you to get a random anime images for your projects.
 
 # Contributing
 If you want to contribute to the api you can do so by making a pull request or by making an issue.
@@ -45,43 +47,53 @@ If you want to use the package instead of the api here's the link:
 const { MessageEmbed } = require('discord.js');
 const fetch = require("node-fetch");
 
-let Anyanime = [];
-let ani = await fetch(`https://any-anime.p.rapidapi.com/v1/anime/png/1/?rapidapi-key={YOUR_API_KEY}`);
+let ani = await fetch(`https://any-anime.p.rapidapi.com/v1/anime/gif/2/?rapidapi-key={YOUR_API_KEY}`);
 let data = await ani.json();
 
-Anyanime.push({
-  message: data.message.toLocaleString(),
-  status: data.status.toLocaleString(),
 
-  // image
-
-  name: data.stuff[0].name.toLocaleString(),
-  daimg: data.stuff[0].image.toLocaleString(),
-});
+// {
+//   message: 'Random Anime GIF Images',
+//   status: '200',
+//   images: [
+//     'https://res.cloudinary.com/anyanime/image/upload/hatsune-miku-animeKurizu16.gif',
+//     'https://res.cloudinary.com/anyanime/image/upload/anime-girl-animeKurizu0.gif'
+//   ]
+// }
 
 const embed = new MessageEmbed()
   .setColor("RANDOM")
-  .setTitle(`${Anyanime[0].name}`)
-  .setDescription(`${Anyanime[0].message} \n ${Anyanime[0].status}`);
-  .setImage(Anyanime[0].daimg)
+  .setTitle(`AnyAnime`)
+  .setDescription(`${data.message} \n Status: ${data.status}`)
+  .setImage(data.images[0])
   .setFooter(`Hope you like it!`);
 message.channel.send({ embeds: [embed] });
 
 ```
 
-# Endpoints using rapid
-
-- Data & img ( GET ) - https://any-anime.p.rapidapi.com/anime/?rapidapi-key={YOUR_API_KEY} - Shows json data and image.
-- Just img ( GET ) - https://anyanime-api.vercel.app/anime/img/?rapidapi-key={YOUR_API_KEY} - Just shows a random image from the database.
-
 # Base endpoints Heroku
 
-- Base ( GET ) - https://anyanime-api.vercel.app/ - The base endpoint
-- Data & img ( GET ) - https://anyanime-api.vercel.app/anime - Shows json data and image.
-- Just img ( GET ) - https://anyanime-api.vercel.app/anime/img - Just shows a random image from the database.
+- Json response ( Get ) - https://any-anime.p.rapidapi.com/v1/anime/png/1/?rapidapi-key={YOUR_API_KEY} - Shows json data and image.
 
-# Base endpoints Replit
+## Params and query
 
-- Base ( GET ) - https://anyanime-api.vercel.app/ - The base endpoint
-- Data & img ( GET ) - https://anyanime-api.vercel.app/anime - Shows json data and image.
-- Just img ( GET ) - https://anyanime-api.vercel.app/anime/img - Just shows a random image from the database.
+"/v1/anime/:type/:number"
+
+- "v1" - Version of the api
+- "anime" - Type [ default]
+- ":type" - Type of image [ png | gif ]
+- ":number" - Number of images [ 1 - 10 ] [ default 1 ]
+
+## Response
+
+- Gives a json response with the image url and status code.
+```json
+{
+  message: 'Random Anime GIF Images',
+  status: '200',
+  images: [
+    'https://res.cloudinary.com/anyanime/image/upload/hatsune-miku-animeKurizu16.gif',
+    'https://res.cloudinary.com/anyanime/image/upload/anime-girl-animeKurizu0.gif'
+  ]
+}
+```
+for - https://any-anime.p.rapidapi.com/v1/anime/gif/2/?rapidapi-key={YOUR_API_KEY}
