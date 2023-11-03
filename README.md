@@ -1,5 +1,3 @@
-# Note changes are not yet pushed
-
 <p align="center">
   <a href="https://www.npmjs.com/package/anyanime">
     <img src="https://media.discordapp.net/attachments/953273278770860082/954403125584871454/anyanimeapi.png?width=1279&height=196" alt="Any Anime Api">
