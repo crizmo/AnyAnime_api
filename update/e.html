@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Gallery</title>
+    <style>
+        #imageGallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 10px;
+            padding: 10px;
+        }
+        #imageGallery img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="imageGallery"></div>
+
+    <script>
+        fetch('./database/data/urls.json')
+            .then(response => response.json())
+            .then(urls => {
+                const imageGallery = document.getElementById('imageGallery');
+                urls.forEach(url => {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    imageGallery.appendChild(img);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        
+    </script>
+</body>
+</html>
